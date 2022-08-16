@@ -89,12 +89,12 @@ export async function POST({ request, url, locals }) {
     console.log("POST() /login/index.js => response: %o", r);
   
     return {
-        status: 200,
-        headers: { 
-          "set-cookie": s
+       status: 200,
+       headers: { 
+           "set-cookie": s
        },
        body: {
-            loggedin: r,
+           loggedin: r,
        }
       }
 

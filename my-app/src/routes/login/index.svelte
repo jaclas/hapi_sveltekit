@@ -28,12 +28,15 @@
     export let zgeta = "empty";
 
     import { enhance } from "$lib/form";
-    import { goto } from "$app/navigation";
+    import { goto, beforeNavigate } from "$app/navigation";
+
+    beforeNavigate((navigation) => {
+        console.log("beforeNavigate() /login/index.svelte => navigation: ", navigation);
+    });
 
     const result = async () => {
         console.log('load() /login/index.svelte => goto("/about")');
-        const endpoint = new URL(`http://localhost:5173/about`);
-        await goto(endpoint);
+        await goto("/about");
     };
 
     function error({ error }) {
