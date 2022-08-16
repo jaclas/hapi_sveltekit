@@ -1,31 +1,11 @@
-<script context="module">
-    import { browser } from "$app/env";
-
-    /** @type {import('./__types/index).Load} */
-    export async function load({ params, fetch, session, props, stuff }) {
-        console.log("------load in /login/index.svelte-------");
-
-        console.log("load() /login/index.svelte => browser: ", browser);
-        console.log("load() /login/index.svelte => props: ", props);
-        console.log("load() /login/index.svelte => stuff: ", stuff);
-        let url = `http://localhost:5173/login/data.json`;
-        //console.log("load() /login/index.svelte => call fetch(%s)", url);
-        //const response = await fetch(url);
-
-        let res = "jakieś coś";
-        //res = response.ok && (await response.json());
-        //console.log("load() /login/index.svelte => response: ", res);
-        return {
-            //status: response.status,
-            status: 200,
-            props,
-        };
-    }
-</script>
-
 <script>
+    //throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
+
+    import { browser } from "$app/env";
+    //throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
     export let loggedin = "empty";
-    export let zgeta = "empty";
+    export let data = "empty";
 
     import { enhance } from "$lib/form";
     import { goto, beforeNavigate } from "$app/navigation";
@@ -45,8 +25,8 @@
 </script>
 
 <div class="container">
-    <div>logged in: {JSON.stringify(loggedin)}</div>
-    <div>zgeta in: {JSON.stringify(zgeta)}</div>
+    <div>logged in: {JSON.stringify(data.loggedin)}</div>
+    <div>zgeta in: {JSON.stringify(data)}</div>
     <form method="POST" use:enhance="{{ result, error }}">
         <fieldset>
             <input autocomplete="email" name="email" type="email" required placeholder="Email" value="email@post.pl" />

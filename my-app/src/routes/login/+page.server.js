@@ -3,8 +3,8 @@ import cookie from "cookie";
 
 
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET({ request, locals }) {
+/** @type {import('@sveltejs/kit').PageServerLoad} */
+export async function load({ request, locals }) {
     console.log("------GET in /login/index.js-------");
     console.log("GET() /login/index.js => browser: ", browser);
 
@@ -46,14 +46,11 @@ export async function GET({ request, locals }) {
       }
     console.log("GET() /login/index.js => response body: ", body);
 
-    return { 
-        status: 200,
-        body: body 
-    };
+    return body;
 }
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function POST({ request, url, locals }) {
+/** @type {import('@sveltejs/kit').Action} */
+export async function POST({ request, url, locals, setHeaders }) {
     console.log("------POST in /login/index,js-------");
     console.log("POST() /login/index.js => browser: ", browser);
     const data = await request.formData(); // or .json(), or .text(), etc
@@ -88,18 +85,13 @@ export async function POST({ request, url, locals }) {
  
     console.log("POST() /login/index.js => response: %o", r);
   
-    return {
-       status: 200,
-       headers: { 
-           "set-cookie": s
-       },
-       body: {
-           loggedin: r,
-       }
-      }
-
+    setHeaders({ 
+        "set-cookie": s
+    });
+    return;
       const endpoint = new URL(`http://${url.host}/login`);
 
+      throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
       return {
         headers: { 
           Location: endpoint.toString(),
@@ -108,6 +100,7 @@ export async function POST({ request, url, locals }) {
         status: 302
       }
     
+    throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
     return { 
         status: 200,
         body: {

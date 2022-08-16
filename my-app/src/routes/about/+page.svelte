@@ -1,5 +1,9 @@
 <script>
-    export let number;
+    // throw new Error(
+    //     "@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)"
+    // );
+
+    export let data = {};
     let x = Math.floor(Math.random() * 100);
 </script>
 
@@ -10,7 +14,7 @@
 <div class="container">
     <h1>about site [{x}]</h1>
     <p>/about/index.svelte</p>
-    <p>number: {number}</p>
+    <p>number: {data.number}</p>
 
     <a href="/">Home</a>
 </div>

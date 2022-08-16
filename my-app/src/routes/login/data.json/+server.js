@@ -1,10 +1,11 @@
+import { json as json$1 } from '@sveltejs/kit';
 import { browser } from "$app/env";
+
 
 /** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET({clientAddress, locals, params, platform, request, routeId, url}) {
-    console.log("------GET in about/index.js------");
-    console.log("GET() /about/index.js => browser: ", browser);
-    // console.log("clientAddress: ", clientAddress);
+    console.log("------GET in /login/data.json-------");
+    console.log("GET() /login/data.json => browser: ", browser);
     // console.log("locals: ", locals);
     // console.log("params: ", params);
     // console.log("platform: ", platform);
@@ -12,13 +13,12 @@ export async function GET({clientAddress, locals, params, platform, request, rou
     // console.log("routeId: ", routeId);
     // console.log("url: ", url);
 
-    return {
-      status: 200,
+    return json$1({
+  number: Math.floor(Math.random() * 1000),
+  message: "Hello World!"
+}, {
       headers: {
         'access-control-allow-origin': '*'
-      },
-      body: {
-        number: Math.floor(Math.random() * 1000)
       }
-    };
+    });
   }
