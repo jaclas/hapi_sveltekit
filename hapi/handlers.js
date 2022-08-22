@@ -9,7 +9,7 @@ export {
     key
 }
 
-const key = "bardzo długie hasło o tajemnej treści";
+const key = "bardzo długie hasło o tajemnej treści lecz wciąż za krótkie!";
 
 /**
  * @param {Hapi.Request} request
