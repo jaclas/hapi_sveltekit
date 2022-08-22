@@ -1,14 +1,11 @@
 <script>
-    import { browser } from "$app/env";
-
     /** @type {import('./$types').LayoutData} */
     export let data;
     console.log("data in /+layout.svelte: ", JSON.stringify(data));
 </script>
 
 <div class="container">
-    <div>layout menu</div>
-    <p>rendered in browser: {browser}</p>
+    <div>/layout</div>
     <p>data in root layout: {JSON.stringify(data)}</p>
     <nav class="menu">
         <a href="/">Home</a>
@@ -21,7 +18,8 @@
 <style lang="css">
     .menu {
         display: flex;
-        background-color: orange;
+        background-color: rgb(248, 216, 177);
+        border: 1px solid black;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;

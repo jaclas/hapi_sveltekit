@@ -1,9 +1,16 @@
 <script>
-    import { browser } from "$app/env";
     export let data = {};
     console.log("data in /login/+layout.svelte: ", JSON.stringify(data));
 </script>
 
-<p>login/layout rendered in browser: {browser}</p>
+<div class="container">
+    <div>/login/layout</div>
+    <p>data in login/layout: {JSON.stringify(data)}</p>
+    <slot />
+</div>
 
-<slot />
+<style lang="css">
+    .container {
+        background-color: rgb(170, 255, 213);
+    }
+</style>
