@@ -11,10 +11,11 @@ export async function load(loadParameters) {
 	  * url: URL;
   	! parent: () => Promise<ParentData>;
     */    
-  const stuff = await loadParameters.parent();
+    const stuff = await loadParameters.parent();
     console.log("------load() in /about/+page.server.js------");
    
     console.log("load() /about/+page.server.js => locals: ", loadParameters.locals);
+    console.log("load() /about/+page.server.js => parent(): ", stuff);
     console.log("load() /about/+page.server.js => params: ", loadParameters.params);
     console.log("load() /about/+page.server.js => parent(): ", stuff);   
 
@@ -22,8 +23,14 @@ export async function load(loadParameters) {
     loadParameters.setHeaders({
       'access-control-allow-origin': '*'
     });
-    console.log("==========END of load in /about/+page.server.js =========");
-    return {
-        number: Math.floor(Math.random() * 1000)
+    let output = {
+      "/login/+page.server.js" : {
+          locals: loadParameters.locals,
+          parent: stuff,
+          level: 2
+      },
     };
+    console.dir(output, {depth: 5});
+    console.log("==========END of load in /about/+page.server.js =========");
+    return output;
   }

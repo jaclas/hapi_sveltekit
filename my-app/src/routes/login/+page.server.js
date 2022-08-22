@@ -1,7 +1,4 @@
-import { browser } from "$app/env";
 import cookie from "cookie";
-
-
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load(loadParameters) {
@@ -18,7 +15,6 @@ export async function load(loadParameters) {
     */    
     console.log("------load() in /login/+page.server.js-------");
     const stuff = await loadParameters.parent();
-    console.log("load() /login/+page.server.js => browser: ", browser);
     console.log("load() /login/+page.server.js => locals: ", loadParameters.locals);
     console.log("load() /login/+page.server.js => parent(): ", stuff);
     console.log("load() /login/+page.server.js => routeId: ", loadParameters.routeId);
@@ -55,16 +51,16 @@ export async function load(loadParameters) {
                             });
     const r = await response.json()
 
-    const output = {
-        level2: {
-            page: {
-                pageserverget: "from GET() in /login/+page.server.js"                
-            }
+    let output = {
+        "/login/+page.server.js" : {
+            locals: loadParameters.locals,
+            parent: stuff,
+            level: 2
         },
-        loggedin: r,
     };
 
-    console.log("load() /login/+page.server.js => response output: ", output);
+    console.log("load() /login/+page.server.js => output: ");
+    console.dir(output, {depth: 5});
     console.log("==========END of load() in /login/+page.server.js =========");
 
     return output;

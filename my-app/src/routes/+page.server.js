@@ -18,14 +18,16 @@ export async function load(loadParameters) {
     console.log("load() /+page.server.js => parent(): ", stuff);
     console.log("load() /+page.server.js => routeId: ", loadParameters.routeId);
     console.log("load() /+page.server.js => url.href: ", loadParameters.url.href);
-    const output = {
-        level1: {
-            page: {
-                server: "from /+page.server.js"        
-            }
-        }    
+    let output = {
+        "/+page.server.js" : {
+            locals: loadParameters.locals,
+            parent: stuff,
+            level: 1
+        },
     };
-    console.log("load() /+page.server.js => output: ", JSON.stringify(output));
+
+    console.log("load() /+page.server.js => output: ")
+    console.dir(output, {depth: 5});
     console.log("==========END of load in /+page.server.js =========");
     return output;
   }

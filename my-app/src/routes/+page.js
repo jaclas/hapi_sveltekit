@@ -1,4 +1,5 @@
 import mergician from "mergician";
+import { dataset_dev } from "svelte/internal";
 
 /** @type {import('./$types').PageLoad} */
 export async function load(loadParameters) {
@@ -19,15 +20,14 @@ export async function load(loadParameters) {
     //res = response.ok && (await response.json());
     //console.log("load() /login/index.svelte => response: ", res);
     let output = {
-        level1: {
-            page: {
-                pagejs: "from /+page.js"        
-            }
-        }
+        "/+page.js" : {
+            data: loadParameters.data,
+            parent: stuff,
+            level: 1
+        },
     };
-    output = mergician(output, loadParameters.data);
-    output = mergician(output, stuff);
-    console.log("load() /+page.js => output: ", JSON.stringify(output));
+    console.log("load() /+page.js => output: ");
+    console.dir(output, {depth: 5});
     console.log("==========END of load in /+page.js =========");
     return output;
 }

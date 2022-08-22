@@ -17,11 +17,15 @@ export async function load(loadParameters) {
     // const url = `http://localhost:5173/login/data.json`;
     // const response = await fetch(url);
 
-    const output = {
-        stuff: stuff ,
-        level3: "from /login/+layout.js"
+    let output = {
+        "/login/+layout.js" : {
+            data: loadParameters.data,
+            parent: stuff,
+            level: 2
+        },
     };
-    console.log("load() /login/+layout.js => output: ", JSON.stringify(output));
+    console.log("load() /login/+layout.js => output: ");
+    console.dir(output, {depth: 5});
     console.log("==========END of load in /login/+layout.js =========");
     return output;
 }

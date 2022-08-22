@@ -1,6 +1,6 @@
 <script>
     export let data;
-    console.log("data in /+page.svelte: ", data);
+    console.log("data in /+page.svelte: ", JSON.stringify(data));
 </script>
 
 <div class="container">
