@@ -1,18 +1,27 @@
-import { browser } from "$app/env";
-
-/** @type {import('./$types').Load} */
-export async function load({ parent }) {
-    const stuff = await parent();
-    console.log("------load in /login/__layout.svelte-------");
-    console.log("load() /login/__layout.svelte => browser: ", browser);
-    console.log("load() /login/__layout.svelte => parent() (stuff): ", stuff);
+/** @type {import('./$types').LayoutLoad} */
+export async function load(loadParameters) {
+    /* input:
+    * fetch(info: RequestInfo, init?: RequestInit): Promise<Response>;
+	* params: Params;
+	* data: Data;
+	* routeId: string | null;
+	! setHeaders: (headers: ResponseHeaders) => void;
+	* url: URL;
+	! parent: () => Promise<ParentData>;
+	* depends: (...deps: string[]) => void;
+    */
+    console.log("------load() in /login/+layout.js -------");
+    const stuff = await loadParameters.parent();
+    console.log("load() /login/+layout.js => data: ", loadParameters.data);
+    console.log("load() /login/+layout.js => parent() (stuff): ", stuff);
     // const url = `http://localhost:5173/login/data.json`;
     // const response = await fetch(url);
 
-    // output:
-    //   status, props, stuff, dependencies, error, redirect and cache
-    return {
-        stuff: { message: "stuff from /login/__layout.svelte", stuff },
-        layout: "__layout.svelte",
+    const output = {
+        stuff: stuff ,
+        level3: "from /login/+layout.js"
     };
+    console.log("load() /login/+layout.js => output: ", JSON.stringify(output));
+    console.log("==========END of load in /login/+layout.js =========");
+    return output;
 }

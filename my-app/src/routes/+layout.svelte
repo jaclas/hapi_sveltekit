@@ -1,14 +1,15 @@
 <script>
-    //throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
-
     import { browser } from "$app/env";
 
-    let x = Math.floor(Math.random() * 100);
+    /** @type {import('./$types').LayoutData} */
+    export let data;
+    console.log("data in /+layout.svelte: ", data);
 </script>
 
 <div class="container">
-    <div>layout menu [{x}]</div>
+    <div>layout menu</div>
     <p>rendered in browser: {browser}</p>
+    <p>data in root layout: {JSON.stringify(data)}</p>
     <nav class="menu">
         <a href="/">Home</a>
         <a href="/about">About</a>

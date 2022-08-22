@@ -12,27 +12,22 @@ export async function load(loadParameters) {
 	! parent: () => Promise<ParentData>;
 	* depends: (...deps: string[]) => void;
     */
-    console.log("------load in /login/+page.js-------");
+    console.log("------load in /+page.js-------");
     const stuff = await loadParameters.parent();
-    console.log("load() /login/+page.js => data (props): ", loadParameters.data);
-    console.log("load() /login/+page.js => parent() (stuff): ", stuff);
-    let url = `http://localhost:5173/login/data.json`;
-    //console.log("load() /login/index.svelte => call fetch(%s)", url);
-    //const response = await fetch(url);
-
+    console.log("load() /+page.js => data (props): ", loadParameters.data);
+    console.log("load() /+page.js => parent() (stuff): ", stuff);
     //res = response.ok && (await response.json());
     //console.log("load() /login/index.svelte => response: ", res);
     let output = {
-        level2: {
+        level1: {
             page: {
-                pagejs: "from /login/+page.js"        
+                pagejs: "from /+page.js"        
             }
         }
     };
     output = mergician(output, loadParameters.data);
     output = mergician(output, stuff);
-
-    console.log("load() /login/+page.js => output: ", JSON.stringify(output));
-    console.log("==========END of load in /login/+page.js =========");
+    console.log("load() /+page.js => output: ", JSON.stringify(output));
+    console.log("==========END of load in /+page.js =========");
     return output;
 }

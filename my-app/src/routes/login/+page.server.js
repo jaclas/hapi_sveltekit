@@ -3,25 +3,39 @@ import cookie from "cookie";
 
 
 
-/** @type {import('@sveltejs/kit').PageServerLoad} */
-export async function load({ request, locals }) {
-    console.log("------GET in /login/index.js-------");
-    console.log("GET() /login/index.js => browser: ", browser);
+/** @type {import('./$types').PageServerLoad} */
+export async function load(loadParameters) {
+    /* input:
+    * clientAddress: string;
+    * locals: App.Locals;
+	* params: Params;
+    * platform: Readonly<App.Platform>;
+    * request: Request;
+	* routeId: string | null;
+	! setHeaders: (headers: ResponseHeaders) => void;
+	* url: URL;
+	! parent: () => Promise<ParentData>;
+    */    
+    console.log("------load() in /login/+page.server.js-------");
+    const stuff = await loadParameters.parent();
+    console.log("load() /login/+page.server.js => browser: ", browser);
+    console.log("load() /login/+page.server.js => locals: ", loadParameters.locals);
+    console.log("load() /login/+page.server.js => parent(): ", stuff);
+    console.log("load() /login/+page.server.js => routeId: ", loadParameters.routeId);
+    console.log("load() /login/+page.server.js => url.href: ", loadParameters.url.href);
 
     let token = undefined;
-    const cookiezy = request.headers.get("cookie");
+    const cookiezy = loadParameters.request.headers.get("cookie");
     if (cookiezy) {
         const cookieRecord = cookie.parse(cookiezy);
         if (cookieRecord.token) {
             token = cookieRecord.token;
         }
     }    
-    console.log("GET() /login/index.js => request.headers.cookie[\"token\"]: ", token);
-    console.log("GET() /login/index.js => locals: ", JSON.stringify(locals));
+    console.log("load() /login/+page.server.js => request.headers.cookie[\"token\"]: ", token);
     
     let url = "http://localhost:3030/api/whoami";
-
-    console.log("GET() /login/index.js => call fetch(%s)", url);
+    console.log("load() /login/+page.server.js => call fetch(%s)", url);
     const response = await fetch(url, {
                                 method: "GET", 
                                 mode: "cors",
@@ -40,31 +54,38 @@ export async function load({ request, locals }) {
                                 cache: "no-cache"
                             });
     const r = await response.json()
-    const body = {
-        zgeta: "Hello z GETa w /login/index.js!",
-        loggedin: r,
-      }
-    console.log("GET() /login/index.js => response body: ", body);
 
-    return body;
+    const output = {
+        level2: {
+            page: {
+                pageserverget: "from GET() in /login/+page.server.js"                
+            }
+        },
+        loggedin: r,
+    };
+
+    console.log("load() /login/+page.server.js => response output: ", output);
+    console.log("==========END of load() in /login/+page.server.js =========");
+
+    return output;
 }
 
 /** @type {import('@sveltejs/kit').Action} */
 export async function POST({ request, url, locals, setHeaders }) {
-    console.log("------POST in /login/index,js-------");
-    console.log("POST() /login/index.js => browser: ", browser);
+    console.log("------POST in /login/+page.server,js-------");
+    console.log("POST() /login/+page.server.js => browser: ", browser);
     const data = await request.formData(); // or .json(), or .text(), etc
 
     const email = data.get("email");
     const password = data.get("password");    
 
-    console.log("POST() /login/index.js => input email: %s, password = %s", email, password);
+    console.log("POST() /login/+page.server.js => input email: %s, password = %s", email, password);
     const payload = {
         email: email,        
         password: password
     };
     let _url = "http://localhost:3030/api/logon";
-    console.log("POST() /login/index.js => call fetch(%s)", _url);
+    console.log("POST() /login/+page.server.js => call fetch(%s)", _url);
     locals.user  = {test: 123};
     const response = await fetch(_url, {
                                         method: "POST", 
@@ -80,35 +101,13 @@ export async function POST({ request, url, locals, setHeaders }) {
     let s = "";
     if (response.headers.get("set-cookie")) {
         s = response.headers.get("set-cookie");
-        console.log("POST() /login/index.js => set-cookie: %s", s);
+        console.log("POST() /login/+page.server.js => set-cookie: %s", s);
     }    
  
-    console.log("POST() /login/index.js => response: %o", r);
+    console.log("POST() /login/+page.server.js => response: %o", r);
   
     setHeaders({ 
         "set-cookie": s
     });
-    return;
-      const endpoint = new URL(`http://${url.host}/login`);
-
-      throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
-      return {
-        headers: { 
-          Location: endpoint.toString(),
-          "set-cookie": s
-       },
-        status: 302
-      }
-    
-    throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
-    return { 
-        status: 200,
-        body: {
-            zgeta: "Hello zposta w /login/index.js!",
-            loggedin: r
-        },
-        headers: {
-            'set-cookie': s
-          } 
-    };
+    console.log("==========END of POST() in /login/+page.server.js =========");
 }

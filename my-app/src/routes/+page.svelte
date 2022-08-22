@@ -1,9 +1,10 @@
 <script>
-    let x = Math.floor(Math.random() * 100);
+    export let data;
+    console.log("data in /+page.svelte: ", data);
 </script>
 
 <div class="container">
-    <h1>root index [{x}]</h1>
+    <h1>root index</h1>
     <p>/index.svelte</p>
 
     <a href="/about">About</a>

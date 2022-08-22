@@ -17,6 +17,7 @@ export async function handle({ event, resolve }) {
     //                     id: 2}
 
     const response = await resolve(event);
+    console.log("============= END of hooks =============");
     return response;
 }
 

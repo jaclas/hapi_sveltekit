@@ -1,25 +1,23 @@
 <script>
-    //throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
-
     import { browser } from "$app/env";
-    //throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
 
     export let loggedin = "empty";
-    export let data = "empty";
+    export let data = {};
+    export let errors = null;
 
     import { enhance } from "$lib/form";
     import { goto, beforeNavigate } from "$app/navigation";
 
     beforeNavigate((navigation) => {
-        console.log("beforeNavigate() /login/index.svelte => navigation: ", navigation);
+        console.log("beforeNavigate() /login/+page.svelte => navigation: ", navigation);
     });
 
-    const result = async () => {
-        console.log('load() /login/index.svelte => goto("/about")');
+    const _result = async () => {
+        console.log('load() /login/+page.svelte => goto("/about")');
         await goto("/about");
     };
 
-    function error({ error }) {
+    function _error({ error }) {
         // show for example alert "invalid password or email"
     }
 </script>
@@ -27,7 +25,7 @@
 <div class="container">
     <div>logged in: {JSON.stringify(data.loggedin)}</div>
     <div>zgeta in: {JSON.stringify(data)}</div>
-    <form method="POST" use:enhance="{{ result, error }}">
+    <form method="POST" use:enhance="{{ _result, _error }}">
         <fieldset>
             <input autocomplete="email" name="email" type="email" required placeholder="Email" value="email@post.pl" />
         </fieldset>
