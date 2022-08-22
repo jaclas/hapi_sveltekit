@@ -69,7 +69,6 @@ export async function load(loadParameters) {
 /** @type {import('@sveltejs/kit').Action} */
 export async function POST({ request, url, locals, setHeaders }) {
     console.log("------POST in /login/+page.server,js-------");
-    console.log("POST() /login/+page.server.js => browser: ", browser);
     const data = await request.formData(); // or .json(), or .text(), etc
 
     const email = data.get("email");

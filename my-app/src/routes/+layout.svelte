@@ -3,7 +3,7 @@
 
     /** @type {import('./$types').LayoutData} */
     export let data;
-    console.log("data in /+layout.svelte: ", data);
+    console.log("data in /+layout.svelte: ", JSON.stringify(data));
 </script>
 
 <div class="container">

@@ -1,5 +1,3 @@
-import mergician from "mergician";
-import { dataset_dev } from "svelte/internal";
 
 /** @type {import('./$types').PageLoad} */
 export async function load(loadParameters) {
@@ -15,8 +13,8 @@ export async function load(loadParameters) {
     */
     console.log("------load in /+page.js-------");
     const stuff = await loadParameters.parent();
-    console.log("load() /+page.js => data (props): ", loadParameters.data);
-    console.log("load() /+page.js => parent() (stuff): ", stuff);
+    console.log("load() /+page.js => data (props): ", JSON.stringify(loadParameters.data));
+    console.log("load() /+page.js => parent() (stuff): ", JSON.stringify(stuff));
     //res = response.ok && (await response.json());
     //console.log("load() /login/index.svelte => response: ", res);
     let output = {

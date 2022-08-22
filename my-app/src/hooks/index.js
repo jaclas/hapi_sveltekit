@@ -9,7 +9,7 @@ async function getUserInformation(cookie) {
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-    console.log("------hooks------");
+    console.log("------handle in hooks------");
     console.log("handle() => hooks/index.js");
     
   //  event.locals.user = await getUserInformation(event.request.headers.get('cookie'));
@@ -17,7 +17,7 @@ export async function handle({ event, resolve }) {
     //                     id: 2}
 
     const response = await resolve(event);
-    console.log("============= END of hooks =============");
+    console.log("============= END of handle in hooks =============");
     return response;
 }
 
