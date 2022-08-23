@@ -23,7 +23,7 @@ export async function load(loadParameters) {
       'access-control-allow-origin': '*'
     });
     let output = {
-      "/login/+page.server.js" : {
+      "/about/+page.server.js" : {
           locals: loadParameters.locals,
           parent: stuff,
           level: 2

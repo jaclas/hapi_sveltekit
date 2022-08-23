@@ -16,6 +16,9 @@ export async function handle({ event, resolve }) {
     // event.locals.user = {username: "patrycjusz",
     //                     id: 2}
 
+    event.locals.test = {
+      "/hooks/index/js": "test"
+    }
     const response = await resolve(event);
     console.log("============= END of handle in hooks =============");
     return response;
