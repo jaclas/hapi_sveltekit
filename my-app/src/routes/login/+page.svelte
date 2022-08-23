@@ -1,8 +1,8 @@
 <script>
     import { browser } from "$app/env";
 
-    export let loggedin = "empty";
-    export let data = {};
+    /** @type {import('./$types').PageData} */
+    export let data;
     export let errors = null;
 
     import { enhance } from "$lib/form";

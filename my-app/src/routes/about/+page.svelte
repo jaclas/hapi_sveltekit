@@ -1,6 +1,6 @@
 <script>
-    export let data = {};
-    let x = Math.floor(Math.random() * 100);
+    /** @type {import('./$types').PageData} */
+    export let data;
 </script>
 
 <svelte:head>
@@ -8,9 +8,9 @@
 </svelte:head>
 
 <div class="container">
-    <h1>about site [{x}]</h1>
+    <h1>about site</h1>
     <p>/about/index.svelte</p>
-    <p>number: {data.number}</p>
+    <p>data: {JSON.stringify(data)}</p>
 
     <a href="/">Home</a>
 </div>

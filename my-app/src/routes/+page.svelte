@@ -1,4 +1,5 @@
 <script>
+    /** @type {import('./$types').PageData} */
     export let data;
     console.log("data in /+page.svelte: ", JSON.stringify(data));
 </script>
