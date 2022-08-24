@@ -11,7 +11,7 @@ export async function GET(getParameters) {
    	! setHeaders: (headers: ResponseHeaders) => void;
 	  * url: URL;
     */    
-    console.log("------GET in /login/data.json/+server.js -------");
+    console.log("------GET() in /login/data.json/+server.js -------");
     
     // console.log("locals: ", locals);
     // console.log("params: ", params);

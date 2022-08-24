@@ -27,6 +27,6 @@ export async function load(loadParameters) {
     };
     console.log("load() /login/+layout.js => output: ");
     console.dir(output, {depth: 5});
-    console.log("==========END of load in /login/+layout.js =========");
+    console.log("==========END of load() in /login/+layout.js =========");
     return output;
 }

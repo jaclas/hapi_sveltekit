@@ -12,7 +12,7 @@ export async function load(loadParameters) {
 	* url: URL;
 	! parent: () => Promise<ParentData>;
     */    
-    console.log("------load in /+layout.server.js------");
+    console.log("------load() in /+layout.server.js------");
     const stuff = await loadParameters.parent();
     console.log("load() /+layout.server.js => routeId: ", loadParameters.routeId);
     console.log("load() /+layout.server.js => url.href: ", loadParameters.url.href);

@@ -20,7 +20,7 @@ export async function handle({ event, resolve }) {
       "/hooks/index.js": "test"
     }
     const response = await resolve(event);
-    console.log("============= END of handle in hooks =============");
+    console.log("============= END of handle() in hooks =============");
     return response;
 }
 

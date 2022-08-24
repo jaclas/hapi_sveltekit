@@ -11,7 +11,7 @@ export async function load(loadParameters) {
 	! parent: () => Promise<ParentData>;
 	* depends: (...deps: string[]) => void;
     */
-    console.log("------load in /+page.js-------");
+    console.log("------load() in /+page.js-------");
     const stuff = await loadParameters.parent();
     console.log("load() /+page.js => data (props): ", JSON.stringify(loadParameters.data));
     console.log("load() /+page.js => parent() (stuff): ", JSON.stringify(stuff));
@@ -26,6 +26,6 @@ export async function load(loadParameters) {
     };
     console.log("load() /+page.js => output: ");
     console.dir(output, {depth: 5});
-    console.log("==========END of load in /+page.js =========");
+    console.log("==========END of load() in /+page.js =========");
     return output;
 }

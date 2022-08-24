@@ -13,7 +13,7 @@ export async function load(loadParameters) {
 	! parent: () => Promise<ParentData>;
     */    
     const stuff = await loadParameters.parent();
-    console.log("------load in /+page.server.js------");
+    console.log("------load() in /+page.server.js------");
     console.log("load() /+page.server.js => locals: ", loadParameters.locals);
     console.log("load() /+page.server.js => parent(): ", stuff);
     let output = {
@@ -26,6 +26,6 @@ export async function load(loadParameters) {
 
     console.log("load() /+page.server.js => output: ")
     console.dir(output, {depth: 5});
-    console.log("==========END of load in /+page.server.js =========");
+    console.log("==========END of load() in /+page.server.js =========");
     return output;
   }

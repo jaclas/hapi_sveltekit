@@ -16,7 +16,7 @@ export async function load(loadParameters) {
     console.log("------load() in /login/+page.server.js-------");
     const stuff = await loadParameters.parent();
     console.log("load() /login/+page.server.js => locals: ", loadParameters.locals);
-    console.log("load() /login/+page.server.js => parent(): ", stuff);
+    console.log("load() /login/+page.server.js => parent(): ", JSON.stringify(stuff));
     console.log("load() /login/+page.server.js => routeId: ", loadParameters.routeId);
     console.log("load() /login/+page.server.js => url.href: ", loadParameters.url.href);
 
