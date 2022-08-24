@@ -1,4 +1,3 @@
-import * as logger from "$lib/logger.js";
 
 /** @type {import('./$types').LayoutLoad} */
 export async function load(loadParameters) {

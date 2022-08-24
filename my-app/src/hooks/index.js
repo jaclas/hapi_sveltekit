@@ -17,7 +17,7 @@ export async function handle({ event, resolve }) {
     //                     id: 2}
 
     event.locals.test = {
-      "/hooks/index/js": "test"
+      "/hooks/index.js": "test"
     }
     const response = await resolve(event);
     console.log("============= END of handle in hooks =============");
