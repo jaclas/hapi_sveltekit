@@ -23,7 +23,7 @@
 </script>
 
 <div class="container">
-    <div>logged in: {JSON.stringify(data.loggedin)}</div>
+    <!-- <div>logged in: {JSON.stringify(data.loggedin)}</div> -->
     <div>zgeta in: {JSON.stringify(data)}</div>
     <form method="POST" use:enhance="{{ _result, _error }}">
         <fieldset>
