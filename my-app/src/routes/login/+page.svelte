@@ -1,5 +1,5 @@
 <script>
-    import { browser } from "$app/env";
+    import { browser } from "$app/environment";
 
     /** @type {import('./$types').PageData} */
     export let data;
@@ -24,7 +24,7 @@
 
 <div class="container">
     <!-- <div>logged in: {JSON.stringify(data.loggedin)}</div> -->
-    <div>zgeta in: {JSON.stringify(data)}</div>
+    <div>data: {JSON.stringify(data)}</div>
     <form method="POST" use:enhance="{{ _result, _error }}">
         <fieldset>
             <input autocomplete="email" name="email" type="email" required placeholder="Email" value="email@post.pl" />
